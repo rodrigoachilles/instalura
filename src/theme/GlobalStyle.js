@@ -5,9 +5,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-  
   ${normalize}
-
   html,
   body {
     margin: 0;

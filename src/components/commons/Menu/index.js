@@ -1,22 +1,8 @@
 import React from 'react';
+import { Text } from '../../../theme/foundation/Text';
 import { Logo } from '../../../theme/Logo';
 import { Button } from '../Button';
 import { MenuWrapper } from './styles/MenuWrapper';
-
-const links = [
-    {
-        texto: 'Home',
-        url: '/'
-    },
-    {
-        texto: 'Perguntas frequentes',
-        url: '/faq'
-    },
-    {
-        texto: 'Sobre',
-        url: '/sobre'
-    }
-]
 
 export default function Menu() {
 return (
@@ -24,13 +10,17 @@ return (
         <MenuWrapper.LeftSide>
             <Logo />
         </MenuWrapper.LeftSide>
-        <MenuWrapper.CenterSide>
-            {links.map((link,index) => {
+        <MenuWrapper.CenterSide as="ul">
+            {[
+          { url: '/', name: 'Home' },
+          { url: '/faq', name: 'Perguntas Frequentes' },
+          { url: '/sobre', name: 'Sobre' },
+        ].map((link,index) => {
                 return (
                     <li key={index}>
-                        <a href={link.url}>
-                            {link.texto}
-                        </a>
+                        <Text variant="smallestException" tag="a" href={link.url}>
+                            {link.name}
+                        </Text>
                     </li>
                 )
             })}
