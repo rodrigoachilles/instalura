@@ -10,7 +10,7 @@ return (
         <MenuWrapper.LeftSide>
             <Logo />
         </MenuWrapper.LeftSide>
-        <MenuWrapper.CenterSide as="ul">
+        <MenuWrapper.CentralSide as="ul">
             {[
           { url: '/', name: 'Home' },
           { url: '/faq', name: 'Perguntas Frequentes' },
@@ -24,7 +24,7 @@ return (
                     </li>
                 )
             })}
-        </MenuWrapper.CenterSide>
+        </MenuWrapper.CentralSide>
         <MenuWrapper.RightSide>
             <Button type="button" ghost variant="secondary.main">
                 Entrar
