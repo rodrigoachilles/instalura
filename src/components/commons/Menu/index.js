@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '../../../theme/foundation/Text';
+import { Text } from '../../../components/foundation/layout/Text';
 import { Logo } from '../../../theme/Logo';
 import { Button } from '../Button';
 import { MenuWrapper } from './styles/MenuWrapper';

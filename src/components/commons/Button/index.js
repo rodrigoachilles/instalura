@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import styled, { css } from "styled-components";
-import { TextStyleVariants } from '../../../theme/foundation/Text';
+import { TextStyleVariants } from '../../../components/foundation/layout/Text';
 import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
 import { propToStyle } from '../../../theme/utils/propToStyle';
 
