@@ -1,14 +1,15 @@
 import React from 'react';
-import { FooterWrapper } from './styles/FooterWrapper';
+import FooterWrapper from './styles/FooterWrapper';
 
 export default function Footer(props) {
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <FooterWrapper {...props}>
       <a href="https://www.alura.com.br/">
         <img src="https://www.alura.com.br/assets/img/alura-logo.svg" alt="Logo Alura" />
       </a>
       <p>
-        {/* {`Orgulhosamente criado durante 
+        {/* {`Orgulhosamente criado durante
         o
         `} */}
         Orgulhosamente criado durante
@@ -21,4 +22,4 @@ export default function Footer(props) {
       </p>
     </FooterWrapper>
   );
-} 
+}
