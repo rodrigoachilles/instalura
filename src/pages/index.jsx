@@ -6,7 +6,6 @@ import Modal from '../components/commons/Modal';
 import Box from '../components/foundation/layout/Box';
 import Grid from '../components/foundation/layout/Grid';
 import { Text } from '../components/foundation/Text';
-
 export default function Home() {
   const [isModalOpen, setModalState] = useState(false);
 
@@ -33,7 +32,10 @@ export default function Home() {
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...propsDoModal}
           >
-            Nosso conteudo do Modal
+            <div>
+              Nosso conteudo do Modal
+
+            </div>
           </Box>
         )}
 
