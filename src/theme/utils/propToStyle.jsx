@@ -28,7 +28,7 @@ export default function propToStyle(propName) {
     }
 
     return {
-      [propName]: props[propName],
+      [propName]: propValue,
     };
   };
 }
