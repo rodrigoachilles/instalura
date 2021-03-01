@@ -39,6 +39,7 @@ function FormContent() {
     <form onSubmit={(event) => {
       event.preventDefault();
 
+      setSubmissionStatus(formStates.DEFAULT);
       setIsFormSubmited(true);
 
       const userDto = {
@@ -60,13 +61,13 @@ function FormContent() {
         throw new Error('Não foi possível cadastrar o usuário agora :(');
       }).then((usuario) => {
         setSubmissionStatus(formStates.DONE);
+        // eslint-disable-next-line no-console
         console.log(usuario);
       }).catch((error) => {
         setSubmissionStatus(formStates.ERROR);
+        // eslint-disable-next-line no-console
         console.error(error);
       });
-
-      console.log('enviando o formulario');
     }}
     >
 
@@ -98,7 +99,13 @@ function FormContent() {
             height="100px"
             config={{ animationData: successAnimation, loop: false, autoplay: true }}
           />
-          <p>Cadastro realizado com sucesso!</p>
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+          >
+            <p>Cadastro realizado com sucesso!</p>
+          </Box>
         </Box>
       )}
 
@@ -113,7 +120,13 @@ function FormContent() {
             height="100px"
             config={{ animationData: errorAnimation, loop: false, autoplay: true }}
           />
-          <p>Erro ao submeter os dados. Por favor, tente mais tarde! :(</p>
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+          >
+            <p>Erro ao submeter os dados. Por favor, tente mais tarde! :(</p>
+          </Box>
         </Box>
       )}
 
