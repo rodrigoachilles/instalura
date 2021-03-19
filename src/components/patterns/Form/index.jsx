@@ -192,7 +192,11 @@ export default function FormCadastro({ props }) {
   );
 }
 
+FormCadastro.defaultProps = {
+  props: {},
+};
+
 FormCadastro.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  props: PropTypes.object.isRequired,
+  props: PropTypes.object,
 };
