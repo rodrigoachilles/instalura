@@ -3,6 +3,7 @@ import Button from '../components/commons/Button';
 import Footer from '../components/commons/Footer';
 import Menu from '../components/commons/Menu';
 import Modal from '../components/commons/Modal';
+import SEO from '../components/commons/SEO';
 import Box from '../components/foundation/layout/Box';
 import Grid from '../components/foundation/layout/Grid';
 import Text from '../components/foundation/Text';
@@ -22,6 +23,18 @@ export default function Home() {
       backgroundRepeat="no-repeat"
       backgroundPosition="bottom right"
     >
+
+      <SEO headTitle="Home" />
+
+      {/*
+        [SOLID]
+        S = Single Responsability
+        O = Open Closed
+        L = Liskov Substitution
+        I = Interface Segregation
+        D = Dependency Inversion
+      */}
+
       <Modal
         isOpen={isModalOpen}
         onClose={() => {
