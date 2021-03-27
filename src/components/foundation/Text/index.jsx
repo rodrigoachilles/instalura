@@ -53,10 +53,10 @@ const TextBase = styled.span`
 `;
 
 export default function Text({
+  tag,
+  href,
   variant,
   children,
-  href,
-  tag,
   ...props
 }) {
   if (href) {
@@ -94,7 +94,7 @@ Text.defaultProps = {
 
 Text.propTypes = {
   tag: PropTypes.string,
+  href: PropTypes.string,
   variant: PropTypes.string,
   children: PropTypes.node,
-  href: PropTypes.string,
 };
