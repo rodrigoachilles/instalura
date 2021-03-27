@@ -1,34 +1,28 @@
 import React from 'react';
 import FAQScreen from '../../components/screens/FAQSreen';
+import websitePageHOC from '../../components/wrappers/WebsitePage/hoc';
 
-export default function FAQPage(props) {
-  // const [faqCategories, setFaqCategories] = React.useState([]);
-
-  // React.useEffect(() => {
-  //   fetch('https://instalura-api.vercel.app/api/content/faq').then(async (res) => {
-  //     const response = await res.json();
-  //     return response.data;
-  //   })
-  //     .then((faqCategoriesFromServer) => {
-  //       setFaqCategories(faqCategoriesFromServer);
-  //     });
-  // });
-
-  // const props = {
-  //   faqCategories,
-  // };
-
+function FAQPage(props) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <FAQScreen {...props} />
   );
 }
 
+FAQPage.propTypes = FAQScreen.propTypes;
+
+export default websitePageHOC(FAQPage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Perguntas Frequentes',
+    },
+  },
+});
+
 export async function getStaticProps() {
-  const faqCategories = await fetch('https://instalura-api.vercel.app/api/content/faq').then(async (res) => {
-    const response = await res.json();
-    return response.data;
-  });
+  const faqCategories = await fetch('https://instalura-api.vercel.app/api/content/faq')
+    .then((respostaDoServer) => respostaDoServer.json())
+    .then((respostaConvertida) => respostaConvertida.data);
 
   return {
     props: {

@@ -1,56 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../components/commons/Button';
-import Footer from '../components/commons/Footer';
-import Menu from '../components/commons/Menu';
-import Modal from '../components/commons/Modal';
-import SEO from '../components/commons/SEO';
 import Box from '../components/foundation/layout/Box';
 import Grid from '../components/foundation/layout/Grid';
 import Text from '../components/foundation/Text';
-import FormCadastro from '../components/patterns/Form';
+import { WebsitePageContext } from '../components/wrappers/WebsitePage';
+import websitePageHOC from '../components/wrappers/WebsitePage/hoc';
 
-export default function Home() {
-  const [isModalOpen, setModalState] = useState(false);
+function HomeScreen() {
+  const websitePageContext = React.useContext(WebsitePageContext);
 
   return (
     <Box
       display="flex"
       flex="1"
-      flexWrap="wrap"
       flexDirection="column"
-      justifyContent="space-between"
-      backgroundImage="url(/images/bubbles.svg)"
-      backgroundRepeat="no-repeat"
-      backgroundPosition="bottom right"
     >
-
-      <SEO headTitle="Home" />
-
-      {/*
-        [SOLID]
-        S = Single Responsability
-        O = Open Closed
-        L = Liskov Substitution
-        I = Interface Segregation
-        D = Dependency Inversion
-      */}
-
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setModalState(false);
-        }}
-      >
-        {(props) => (
-          <FormCadastro props={props} />
-        )}
-
-      </Modal>
-
-      <Menu
-        onCadastrarClick={() => setModalState(true)}
-      />
-
       <Grid.Container
         marginTop={{
           xs: '32px',
@@ -97,9 +61,7 @@ export default function Home() {
                 md: 'initial',
               }}
               display="block"
-              onClick={() => {
-                setModalState(!isModalOpen);
-              }}
+              onClick={() => websitePageContext.toggleModalCadastro()}
             >
               Cadastrar
             </Button>
@@ -116,8 +78,19 @@ export default function Home() {
           </Grid.Col>
         </Grid.Row>
       </Grid.Container>
-
-      <Footer />
     </Box>
   );
 }
+
+export default websitePageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+    },
+  },
+});

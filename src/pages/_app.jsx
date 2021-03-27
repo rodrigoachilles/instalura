@@ -1,9 +1,6 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import theme from '../theme';
-import GlobalStyle from '../theme/GlobalStyle';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -16,11 +13,9 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...pageProps} />
-      </ThemeProvider>
+
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Component {...pageProps} />
     </>
   );
 }
