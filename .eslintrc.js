@@ -24,7 +24,7 @@ module.exports = {
   rules: {
     'jsx-a11y/href-no-hash': 'off',
     'jsx-a11y/anchor-is-valid': ['warn', { aspects: ['invalidHref'] }],
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    // 'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
   },
   overrides: [
     {
@@ -38,7 +38,6 @@ module.exports = {
       },
       // eslint-disable-next-line global-require, import/no-extraneous-dependencies
       ...require('eslint-plugin-jest').configs.recommended,
-
     },
   ],
 };

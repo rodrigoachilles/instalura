@@ -1,12 +1,12 @@
 import user from '@testing-library/user-event';
 import React from 'react';
-import { act, render, screen, waitFor } from '../../../infra/test/testUtils';
+import {
+  act, render, screen, waitFor,
+} from '../../../infra/test/testUtils';
 import FormLogin from './index';
 
 const onSubmit = jest.fn();
-onSubmit.mockImplementation((event) => {
-  event.preventDefault();
-});
+onSubmit.mockImplementation((event) => event.preventDefault());
 
 describe('<FormLogin />', () => {
   describe('when from fields are valid', () => {
