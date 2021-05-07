@@ -1,3 +1,4 @@
+// eslint-disable-next-line spaced-comment
 /// <reference types="cypress" />
 
 import LoginScreenPageObject from '../../../../src/components/screens/app/LoginScreen/LoginScreen.pageObject';

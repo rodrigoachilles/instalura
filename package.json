@@ -16,7 +16,10 @@
   },
   "dependencies": {
     "@crello/react-lottie": "0.0.11",
-    "framer-motion": "^4.1.11",
+    "@testing-library/jest-dom": "^5.12.0",
+    "framer-motion": "^4.1.13",
+    "jest-canvas-mock": "^2.3.1",
+    "jest-styled-components": "^7.0.4",
     "lodash": "^4.17.21",
     "next": "latest",
     "nookies": "^2.5.2",
@@ -26,38 +29,41 @@
     "react-is": "^17.0.2",
     "styled-components": "^5.3.0",
     "styled-normalize": "^8.0.7",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "@testing-library/user-event": "^13.1.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
-    "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/react-hooks": "^5.1.2",
     "@types/jest": "^26.0.23",
     "babel-plugin-styled-components": "^1.12.0",
     "cypress": "^7.2.0",
-    "cz-conventional-changelog": "^3.0.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.25.0",
-    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb": "^15.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.11.3",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
-    "jest": "^26.6.3",
-    "jest-canvas-mock": "^2.3.1",
-    "jest-styled-components": "^7.0.4",
+    "jest": "^26.5.0",
     "shelljs": "^0.8.4"
   },
   "license": "MIT",
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   }
 }
