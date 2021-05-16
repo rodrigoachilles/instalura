@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '../components/commons/Button';
 import Box from '../components/foundation/layout/Box';
 import Grid from '../components/foundation/layout/Grid';
@@ -7,7 +7,7 @@ import { WebsitePageContext } from '../components/wrappers/WebsitePage';
 import websitePageHOC from '../components/wrappers/WebsitePage/hoc';
 
 function HomeScreen() {
-  const websitePageContext = React.useContext(WebsitePageContext);
+  const websitePageContext = useContext(WebsitePageContext);
 
   return (
     <Box

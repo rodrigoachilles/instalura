@@ -1,10 +1,11 @@
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 import propToStyle from '../../../theme/utils/propToStyle';
 import Link from '../../commons/Link';
+import { WebsitePageContext } from '../../wrappers/WebsitePage/context';
 
 const paragraph1 = css`
   ${({ theme }) => css`
@@ -57,8 +58,15 @@ export default function Text({
   href,
   variant,
   children,
+  cmsKey,
   ...props
 }) {
+  const websitePageContext = useContext(WebsitePageContext);
+
+  const componentContent = cmsKey
+    ? websitePageContext.getCMSContent(cmsKey)
+    : children;
+
   if (href) {
     return (
       <TextBase
@@ -68,7 +76,7 @@ export default function Text({
       // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
-        {children}
+        {componentContent}
       </TextBase>
     );
   }
@@ -80,7 +88,7 @@ export default function Text({
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
-      {children}
+      {componentContent}
     </TextBase>
   );
 }
@@ -90,6 +98,7 @@ Text.defaultProps = {
   variant: 'paragraph1',
   children: null,
   href: '',
+  cmsKey: undefined,
 };
 
 Text.propTypes = {
@@ -97,4 +106,5 @@ Text.propTypes = {
   href: PropTypes.string,
   variant: PropTypes.string,
   children: PropTypes.node,
+  cmsKey: PropTypes.string,
 };
