@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from '../../components/commons/Link';
 import Box from '../../components/foundation/layout/Box';
 import Grid from '../../components/foundation/layout/Grid';
@@ -9,7 +9,7 @@ import websitePageHOC from '../../components/wrappers/WebsitePage/hoc';
 import Logo from '../../theme/Logo';
 
 function LoginScreen() {
-  const websitePageContext = React.useContext(WebsitePageContext);
+  const websitePageContext = useContext(WebsitePageContext);
 
   return (
     <Grid.Container
