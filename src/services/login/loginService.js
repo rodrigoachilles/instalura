@@ -1,23 +1,8 @@
 import { destroyCookie, setCookie } from 'nookies';
 import isStagingEnv from '../../infra/env/isStagingEnv';
+import HttpClient from '../../infra/http/HttpClient';
 
-async function HttpClient(url, { headers, body, ...options }) {
-  return fetch(url, {
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-    ...options,
-  })
-    .then((respostaDoServer) => {
-      if (respostaDoServer.ok) {
-        return respostaDoServer.json();
-      }
-
-      throw new Error('Falha em pegar os dados do servidor :(');
-    });
-}
+export const LOGIN_COOKIE_APP_TOKEN = 'LOGIN_COOKIE_APP_TOKEN';
 
 const BASE_URL = isStagingEnv
   ? 'https://instalura-api-git-master-omariosouto.vercel.app' // Back End de DEV
@@ -42,7 +27,7 @@ const loginService = {
         }
         const DAY_IN_SECONDS = 86400;
 
-        setCookieModule(null, 'APP_TOKEN', token, {
+        setCookieModule(null, LOGIN_COOKIE_APP_TOKEN, token, {
           path: '/',
           maxAge: DAY_IN_SECONDS * 7,
         });
@@ -52,8 +37,8 @@ const loginService = {
         };
       });
   },
-  async logout(destroyCookieModule = destroyCookie) {
-    destroyCookieModule(null, 'APP_TOKEN');
+  async logout(ctx, destroyCookieModule = destroyCookie) {
+    destroyCookieModule(ctx, LOGIN_COOKIE_APP_TOKEN, { path: '/' });
   },
 };
 
