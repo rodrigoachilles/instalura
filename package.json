@@ -18,9 +18,7 @@
   },
   "dependencies": {
     "@crello/react-lottie": "0.0.11",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/user-event": "^13.1.9",
-    "framer-motion": "^4.1.16",
+    "framer-motion": "^4.1.17",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "jest-canvas-mock": "^2.3.1",
@@ -33,7 +31,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "start-server-and-test": "^1.12.2",
     "styled-components": "^5.3.0",
     "styled-normalize": "^8.0.7",
     "yup": "^0.32.9"
@@ -41,8 +38,10 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
-    "@testing-library/react-hooks": "^5.1.2",
+    "@testing-library/react-hooks": "^6.0.0",
+    "@testing-library/user-event": "^13.1.9",
     "@types/jest": "^26.0.23",
     "babel-plugin-styled-components": "^1.12.0",
     "cypress": "^7.3.0",
@@ -59,7 +58,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "start-server-and-test": "^1.12.2"
   },
   "license": "MIT",
   "config": {

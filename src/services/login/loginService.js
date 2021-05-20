@@ -1,12 +1,8 @@
 import { destroyCookie, setCookie } from 'nookies';
-import isStagingEnv from '../../infra/env/isStagingEnv';
+import { BASE_URL } from '../../infra/env';
 import HttpClient from '../../infra/http/HttpClient';
 
 export const LOGIN_COOKIE_APP_TOKEN = 'LOGIN_COOKIE_APP_TOKEN';
-
-const BASE_URL = isStagingEnv
-  ? 'https://instalura-api-git-master-omariosouto.vercel.app' // Back End de DEV
-  : 'https://instalura-api.omariosouto.vercel.app';// Back End de PROD
 
 const loginService = {
   async login({ username, password },

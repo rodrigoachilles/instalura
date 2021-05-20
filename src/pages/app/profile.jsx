@@ -1,6 +1,6 @@
 import React from 'react';
 import authService from '../../services/auth/authService';
-import userService from '../../services/user/userService';
+import useUserService from '../../services/user/hook/useUserService';
 
 export async function getServerSideProps(ctx) {
   const auth = authService(ctx);
@@ -8,14 +8,11 @@ export async function getServerSideProps(ctx) {
 
   if (hasActiveSession) {
     const session = await auth.getSession();
-    const profilePage = await userService.getProfilePage(ctx);
     return {
       props: {
         user: {
           ...session,
-          ...profilePage.user,
         },
-        posts: profilePage.posts,
       },
     };
   }
@@ -29,9 +26,18 @@ export async function getServerSideProps(ctx) {
 }
 
 export default function ProfilePage(props) {
+  const dados = useUserService.getProfilePage();
+
   return (
     <div>
       Página de Profile!
+
+      <p>
+        {dados.loading && 'Loading...'}
+        {!dados.loading && dados.data && 'Carregou com sucesso'}
+        {!dados.loading && dados.error}
+      </p>
+
       <pre>
         {JSON.stringify(props, null, 4)}
       </pre>
