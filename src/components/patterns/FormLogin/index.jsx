@@ -7,7 +7,6 @@ import loginService from '../../../services/login/loginService';
 import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
 
-
 const loginSchema = yup.object().shape({
   usuario: yup
     .string()
@@ -62,6 +61,7 @@ export default function LoginForm({ onSubmit }) {
         isTouched={form.touched.usuario}
         onChange={form.handleChange}
         onBlur={form.handleBlur}
+        marginBottom='17px'
       />
       <TextField
         placeholder="Senha"
@@ -72,6 +72,7 @@ export default function LoginForm({ onSubmit }) {
         isTouched={form.touched.senha}
         onChange={form.handleChange}
         onBlur={form.handleBlur}
+        marginBottom='17px'
       />
 
       <Button
@@ -81,6 +82,7 @@ export default function LoginForm({ onSubmit }) {
           xs: '0 auto',
           md: 'initial',
         }}
+        padding={{md: '12px 43px'}}
         fullWidth
         disabled={form.isFormDisabled}
       >

@@ -31,7 +31,6 @@ const ButtonWrapper = styled.button`
       ${TextStyleVariants.smallestException}
     `,
     md: css`
-      padding: 12px 43px;
       ${TextStyleVariants.paragraph1}
     `,
   })}
@@ -45,7 +44,9 @@ const ButtonWrapper = styled.button`
   `};
 
   ${propToStyle('margin')}
+  ${propToStyle('padding')}
   ${propToStyle('display')}
+  ${propToStyle('order')}
   
   transition: opacity ${({ theme }) => theme.transition};
   border-radius: ${({ theme }) => theme.borderRadius};

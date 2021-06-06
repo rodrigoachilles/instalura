@@ -1,10 +1,6 @@
-import isStagingEnv from '../../infra/env/isStagingEnv';
+import { BASE_URL } from '../../infra/env';
 import HttpClient from '../../infra/http/HttpClient';
 import authService from '../auth/authService';
-
-const BASE_URL = isStagingEnv
-  ? 'https://instalura-api-git-master.omariosouto.vercel.app'
-  : 'https://instalura-api.omariosouto.vercel.app';
 
 const userService = {
   async getProfilePage(ctx) {
