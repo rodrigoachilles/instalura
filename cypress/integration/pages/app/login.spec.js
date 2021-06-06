@@ -2,12 +2,13 @@
 /// <reference types="cypress" />
 
 import LoginScreenPageObject from '../../../../src/components/screens/app/LoginScreen/LoginScreen.pageObject';
+import { BASE_URL } from '../../../../src/infra/env';
 
 describe('/pages/app/login/', () => {
   describe('when fill and submit a form login request', () => {
     it('go to the profile page', () => {
       // Pré Teste
-      cy.intercept('https://instalura-api-git-master-omariosouto.vercel.app/api/login')
+      cy.intercept(`${BASE_URL}/api/login`)
         .as('userLogin');
 
       // Cenário
