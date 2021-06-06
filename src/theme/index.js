@@ -25,6 +25,10 @@ export const colors = {
       color: '#FB7B6B',
       contrastText: '#fff',
     },
+    light: {
+      color: '#FB7B6B',
+      contrastText: '#fff',
+    },
   },
   tertiary: {
     main: {
@@ -33,6 +37,10 @@ export const colors = {
     },
     light: {
       color: '#88989E',
+      contrastText: '#fff',
+    },
+    dark: {
+      color: '#D4D4D4',
       contrastText: '#fff',
     },
   },

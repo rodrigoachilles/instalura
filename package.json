@@ -9,6 +9,7 @@
     "custom-script": "node ./script-test.js",
     "prepare": "husky install",
     "commit": "cz",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.jsx\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:integration:open": "cypress open",
@@ -32,6 +33,7 @@
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
     "styled-components": "^5.3.0",
+    "styled-icons": "^10.34.0",
     "styled-normalize": "^8.0.7",
     "yup": "^0.32.9"
   },
@@ -58,6 +60,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
+    "prettier": "^2.3.0",
     "shelljs": "^0.8.4",
     "start-server-and-test": "^1.12.2"
   },

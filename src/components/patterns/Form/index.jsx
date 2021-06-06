@@ -84,7 +84,7 @@ function FormContent() {
         color="tertiary.light"
         marginBottom="32px"
       >
-        Você está a um passo de saber tudoo que está
+        Você está a um passo de saber tudo o que está
         rolando no bairro, complete seu cadastro agora!
       </Text>
 
@@ -136,6 +136,7 @@ function FormContent() {
           name="nome"
           value={userInfo.nome}
           onChange={handleChange} // capturadores, pegadores de ação
+          marginBottom='17px'
         />
       </div>
 
@@ -145,10 +146,12 @@ function FormContent() {
           name="usuario"
           value={userInfo.usuario}
           onChange={handleChange}
+          marginBottom='17px'
         />
       </div>
 
-      <Button type="submit" disabled={isFormInvalid} variant="primary.main" fullWidth>
+      <Button type="submit" disabled={isFormInvalid} variant="primary.main" fullWidth 
+      padding={{md: '12px 43px'}}>
         Cadastrar
       </Button>
 
@@ -156,7 +159,7 @@ function FormContent() {
   );
 }
 
-export default function FormCadastro({ props }) {
+export default function FormCadastro({ modalProps }) {
   return (
     <Grid.Row
       marginLeft={0}
@@ -182,7 +185,7 @@ export default function FormCadastro({ props }) {
           }}
           backgroundColor="white"
           // eslint-disable-next-line react/jsx-props-no-spreading
-          {...props}
+          {...modalProps}
         >
           <FormContent />
         </Box>
@@ -193,10 +196,10 @@ export default function FormCadastro({ props }) {
 }
 
 FormCadastro.defaultProps = {
-  props: {},
+  modalProps: {},
 };
 
 FormCadastro.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  props: PropTypes.object,
+  modalProps: PropTypes.object,
 };

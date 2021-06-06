@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Footer from '../../commons/Footer';
 import Menu from '../../commons/Menu';
+import MenuLogged from '../../commons/MenuLogged';
 import Modal from '../../commons/Modal';
 import SEO from '../../commons/SEO';
 import Box from '../../foundation/layout/Box';
 import FormCadastro from '../../patterns/Form';
+import FormUploadImage from '../../patterns/FormUploadImage';
 import { WebsitePageContext } from './context';
 
 export { WebsitePageContext } from './context';
@@ -17,16 +19,20 @@ export default function WebsitePageWrapper({
   seoProps,
   pageBoxProps,
   menuProps,
+  footerProps,
   messages,
 }) {
-  const [isModalOpen, setModalState] = useState(false);
+  const [isModalCadastroOpen, setModalCadastroState] = useState(false);
+  const [isModalUploadImageOpen, setModalUploadImageState] = useState(false);
 
   return (
     <WebsitePageContext.Provider
       value={{
-        teste: true,
         toggleModalCadastro: () => {
-          setModalState(!isModalOpen);
+          setModalCadastroState(!isModalCadastroOpen);
+        },
+        toggleModalUploadImage: () => {
+          setModalUploadImageState(!isModalUploadImageOpen);
         },
         getCMSContent: (cmsKey) => get(messages, cmsKey),
       }}
@@ -42,22 +48,39 @@ export default function WebsitePageWrapper({
         {...pageBoxProps}
       >
         <Modal
-          isOpen={isModalOpen}
+          isOpen={isModalCadastroOpen}
           onClose={() => {
-            setModalState(false);
+            setModalCadastroState(false);
           }}
         >
-          {(propsDoModal) => (
-            <FormCadastro propsDoModal={propsDoModal} />
+          {(modalCadastroProps) => (
+            <FormCadastro modalProps={modalCadastroProps} />
           )}
         </Modal>
-        {menuProps.display && (
+        <Modal
+          isOpen={isModalUploadImageOpen}
+          onClose={() => {
+            setModalUploadImageState(false);
+          }}
+        >
+          {(modalUploadImageProps) => (
+            <FormUploadImage modalProps={modalUploadImageProps} />
+          )}
+        </Modal>
+        {menuProps.variant === 'simple' && (
           <Menu
-            onCadastrarClick={() => setModalState(true)}
+            onCadastrarClick={() => setModalCadastroState(true)}
+          />
+        )}
+        {menuProps.variant === 'logged' && (
+          <MenuLogged
+            onUploadImageClick={() => setModalUploadImageState(true)}
           />
         )}
         {children}
-        <Footer />
+        {footerProps.display && (
+          <Footer />
+        )}
       </Box>
     </WebsitePageContext.Provider>
   );
@@ -67,6 +90,9 @@ WebsitePageWrapper.defaultProps = {
   seoProps: {},
   pageBoxProps: {},
   menuProps: {
+    variant: 'simple',
+  },
+  footerProps: {
     display: true,
   },
   messages: {},
@@ -77,6 +103,9 @@ WebsitePageWrapper.propTypes = {
     headTitle: PropTypes.string,
   }),
   menuProps: PropTypes.shape({
+    variant: PropTypes.oneOf(['none', 'simple', 'logged']),
+  }),
+  footerProps: PropTypes.shape({
     display: PropTypes.bool,
   }),
   pageBoxProps: PropTypes.shape({
