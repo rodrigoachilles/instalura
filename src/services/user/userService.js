@@ -1,5 +1,5 @@
 import { BASE_URL } from '../../infra/env';
-import HttpClient from '../../infra/http/HttpClient';
+import HttpClient from '../../infra/http';
 import authService from '../auth/authService';
 
 const userService = {
@@ -12,9 +12,12 @@ const userService = {
           authorization: `Bearer ${token}`,
         },
       });
+
       return {
         user: {
-          totalLikes: 100,
+          publicacoes: response.data.length,
+          seguindo: 22000,
+          seguidores: 134000,
         },
         posts: response.data,
       };
