@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext } from 'react';
 import Logo from '../../../theme/Logo';
 import Link from '../../commons/Link';

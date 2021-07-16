@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import redirects from './redirects';
 
 // Test Driven Development

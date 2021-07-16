@@ -1,6 +1,7 @@
 const redirects = require('./config/redirects');
 
 module.exports = {
+  reactStrictMode: true,
   trailingSlash: true,
   images: {
     deviceSizes: [320, 640, 768, 1024, 1600],
@@ -36,5 +37,4 @@ module.exports = {
       },
     ];
   },
-  webpack5: true,
 };

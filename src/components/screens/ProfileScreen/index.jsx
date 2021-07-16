@@ -21,7 +21,7 @@ export default function ProfileScreen({ user }) {
             photo={dados.data.posts.filter((post) => user.id === post.user)[0]}
           />
           <Posts
-            posts={dados.data.posts.filter((post) => user.id === post.user)}
+            posts={dados.data.posts.filter((post) => user.id === post.user).reverse()}
           />
         </>
       )}

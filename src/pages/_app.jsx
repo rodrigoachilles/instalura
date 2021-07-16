@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React from 'react';

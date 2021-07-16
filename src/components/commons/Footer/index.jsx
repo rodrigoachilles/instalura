@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import FooterWrapper from './styles/FooterWrapper';
 
@@ -9,9 +10,6 @@ export default function Footer(props) {
         <img src="https://www.alura.com.br/assets/img/alura-logo.svg" alt="Logo Alura" />
       </a>
       <p>
-        {/* {`Orgulhosamente criado durante
-        o
-        `} */}
         Orgulhosamente criado durante
         {' '}
         o

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useContext } from 'react';
 import Button from '../../commons/Button';
 import Box from '../../foundation/layout/Box';

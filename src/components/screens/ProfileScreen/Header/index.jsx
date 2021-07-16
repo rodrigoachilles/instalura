@@ -28,8 +28,8 @@ export default function Header({ user, photo }) {
       <Image
         src={photo.photoUrl}
         alt={photo.description}
-        width="100px"
-        height="100px"
+        width="200px"
+        height="200px"
       />
 
       <Box
