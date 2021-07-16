@@ -19,6 +19,7 @@ const MenuLoggedWrapper = styled.nav`
   border-bottom-color: ${({ theme }) => theme.colors.tertiary.dark.color};
   width: 100%;
   background-color: #fff;
+  z-index: 1;
 
   ${breakpointsMedia({
     xs: css`
@@ -82,6 +83,7 @@ MenuLoggedWrapper.RightSide = styled.div`
       background: #fff;
       box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.04);
       align-items: center;
+      border-radius: 24px 24px 0px 0px;
     `,
     md: css`
       position: initial;
@@ -103,8 +105,8 @@ export const Form = styled.form`
       flex: 1;
       align-items: center;
       border: 1px solid #88989e;
-      width: 250px;
-      height: 40px;
+      width: 235px;
+      height: 38px;
     `,
   })}
 `;

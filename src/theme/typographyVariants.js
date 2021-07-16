@@ -22,6 +22,12 @@ const typographyVariants = {
     fontWeight: '400',
     lineHeight: 1.25, // 125%
   },
+  // [paragraph1Bold]
+  paragraph1Bold: {
+    fontSize: '16px',
+    fontWeight: '500',
+    lineHeight: 1.0,
+  },
   // [paragraph2]
   paragraph2: {
     fontSize: '14px',
