@@ -8,7 +8,9 @@ function Modal({ isOpen, onClose, children }) {
     <ModalWrapper
       isOpen={isOpen}
       onClick={(event) => {
-        const isSafeArea = event.target.closest('[data-modal-safe-area="true"]');
+        const isSafeArea = event.target.closest(
+          '[data-modal-safe-area="true"]',
+        );
         if (!isSafeArea) {
           onClose();
         }
@@ -33,7 +35,6 @@ function Modal({ isOpen, onClose, children }) {
           display: 'flex',
           flex: '1',
         }}
-
       >
         {children({
           'data-modal-safe-area': 'true',

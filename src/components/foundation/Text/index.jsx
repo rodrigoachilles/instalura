@@ -15,6 +15,40 @@ const paragraph1 = css`
   `}
 `;
 
+const paragraphStats = css`
+  ${({ theme }) => css`
+    font-size: ${theme.typographyVariants.smallestException.fontSize};
+    font-weight: ${theme.typographyVariants.smallestException.fontWeight};
+    line-height: ${theme.typographyVariants.smallestException.lineHeight};
+  `}
+  ${breakpointsMedia({
+    md: css`
+      ${({ theme }) => css`
+        font-size: ${theme.typographyVariants.paragraph1.fontSize};
+        font-weight: ${theme.typographyVariants.paragraph1.fontWeight};
+        line-height: ${theme.typographyVariants.paragraph1.lineHeight};
+      `}
+    `,
+  })}
+`;
+
+const paragraph = css`
+  ${({ theme }) => css`
+    font-size: ${theme.typographyVariants.paragraph2.fontSize};
+    font-weight: ${theme.typographyVariants.paragraph2.fontWeight};
+    line-height: ${theme.typographyVariants.paragraph2.lineHeight};
+  `}
+  ${breakpointsMedia({
+    md: css`
+      ${({ theme }) => css`
+        font-size: ${theme.typographyVariants.paragraph1.fontSize};
+        font-weight: ${theme.typographyVariants.paragraph1.fontWeight};
+        line-height: ${theme.typographyVariants.paragraph1.lineHeight};
+      `}
+    `,
+  })}
+`;
+
 const smallestException = css`
   ${({ theme }) => css`
     font-size: ${theme.typographyVariants.smallestException.fontSize};
@@ -40,17 +74,38 @@ const title = css`
   })}
 `;
 
+const profileHeader = css`
+  ${({ theme }) => css`
+    font-size: ${theme.typographyVariants.paragraph1Bold.fontSize};
+    font-weight: ${theme.typographyVariants.paragraph1Bold.fontWeight};
+    line-height: ${theme.typographyVariants.paragraph1Bold.lineHeight};
+  `}
+  ${breakpointsMedia({
+    md: css`
+      ${({ theme }) => css`
+        font-size: ${theme.typographyVariants.titleXS.fontSize};
+        font-weight: ${theme.typographyVariants.titleXS.fontWeight};
+        line-height: ${theme.typographyVariants.titleXS.lineHeight};
+      `}
+    `,
+  })}
+`;
+
 export const TextStyleVariants = {
   smallestException,
   paragraph1,
   title,
+  paragraphStats,
+  paragraph,
+  profileHeader,
 };
 
 const TextBase = styled.span`
   ${({ variant }) => TextStyleVariants[variant]}
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
-  
+
   ${propToStyle('textAlign')}
+  ${propToStyle('marginBottom')}
 `;
 
 export default function Text({
@@ -73,7 +128,7 @@ export default function Text({
         as={Link}
         variant={variant}
         href={href}
-      // eslint-disable-next-line react/jsx-props-no-spreading
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
         {componentContent}

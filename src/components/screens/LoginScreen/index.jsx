@@ -11,16 +11,8 @@ export default function LoginScreen() {
   const websitePageContext = useContext(WebsitePageContext);
 
   return (
-    <Grid.Container
-      display="flex"
-      flex="1"
-      alignItems="center"
-    >
-      <Grid.Row
-        flex="1"
-        alignItems="center"
-        justifyContent="center"
-      >
+    <Grid.Container display="flex" flex="1" alignItems="center">
+      <Grid.Row flex="1" alignItems="center" justifyContent="center">
         <Grid.Col
           display="flex"
           flexDirection="column"
@@ -36,10 +28,7 @@ export default function LoginScreen() {
             marginTop="37px"
             marginBottom="37px"
           >
-            <Link
-              href="/"
-              color="secondary.main"
-            >
+            <Link href="/" color="secondary.main">
               <Logo size="large" />
             </Link>
           </Box>
@@ -65,13 +54,9 @@ export default function LoginScreen() {
         </Grid.Col>
 
         <Grid.Col value={{ xs: 12, md: 6 }}>
-          <Box
-            display="flex"
-            justifyContent="center"
-          >
+          <Box display="flex" justifyContent="center">
             <img
-              align="center"
-              src="https://bootcamp-alura-01-git-modulo01.omariosouto.vercel.app/images/phones.png"
+              src="/images/phones.png"
               alt="Telefones mostrando as páginas internas do app"
             />
           </Box>

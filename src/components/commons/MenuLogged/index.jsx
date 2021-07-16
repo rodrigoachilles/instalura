@@ -57,7 +57,7 @@ export default function MenuLogged({ onUploadImageClick }) {
           order={{ xs: 1, md: 3 }}
           padding={{ xs: '0', md: '0' }}
           margin={0}
-          href="/app/profile"
+          href="/app/feed"
         >
           <HomeIcon />
         </Button>
@@ -74,6 +74,7 @@ export default function MenuLogged({ onUploadImageClick }) {
           order={{ xs: 5, md: 5 }}
           padding={{ xs: '0', md: '0' }}
           margin={0}
+          href="/app/profile"
         >
           <UserIcon />
         </Button>

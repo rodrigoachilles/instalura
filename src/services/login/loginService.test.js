@@ -1,10 +1,15 @@
 import loginService from './loginService';
 
 const token = 'fake-token';
+const user = {
+  name: 'fake-name',
+};
+
 async function HttpClientModule() {
   return {
     data: {
       token,
+      user,
     },
   };
 }
@@ -23,15 +28,36 @@ describe('loginService', () => {
     describe('when user try to login', () => {
       describe('and succeed', () => {
         test('store its token', async () => {
-          const loginServiceResponse = await loginService.login({
-            username: 'someusername',
-            password: 'somepassword',
-          }, setCookieModule, HttpClientModule);
+          const loginServiceResponse = await loginService.login(
+            {
+              username: 'someusername',
+              password: 'somepassword',
+            },
+            setCookieModule,
+            HttpClientModule,
+          );
 
+          expect(setCookieModule).toBeCalledTimes(2);
           expect(setCookieModule).toHaveBeenCalledWith(
-            null, 'LOGIN_COOKIE_APP_TOKEN', token, {
+            null,
+            'LOGIN_COOKIE_APP_TOKEN',
+            token,
+            {
               path: '/',
               maxAge: 604800,
+              sameSite: 'none',
+              secure: true,
+            },
+          );
+          expect(setCookieModule).toHaveBeenCalledWith(
+            null,
+            'USER_NAME',
+            user.name,
+            {
+              path: '/',
+              maxAge: 604800,
+              sameSite: 'none',
+              secure: true,
             },
           );
           expect(loginServiceResponse).toEqual({ token });
@@ -40,12 +66,16 @@ describe('loginService', () => {
 
       describe('and it fails', () => {
         test('throws an error', async () => {
-          await expect(loginService.login({
-            username: 'someusername',
-            password: 'somepassword',
-          }, setCookieModule, HttpClientModuleError))
-            .rejects
-            .toThrow('Failed to login');
+          await expect(
+            loginService.login(
+              {
+                username: 'someusername',
+                password: 'somepassword',
+              },
+              setCookieModule,
+              HttpClientModuleError,
+            ),
+          ).rejects.toThrow('Failed to login');
         });
       });
     });
@@ -56,7 +86,11 @@ describe('loginService', () => {
       test('remove its token', async () => {
         const destroyCookie = jest.fn();
         await loginService.logout(null, destroyCookie);
-        expect(destroyCookie).toHaveBeenCalledWith(null, 'LOGIN_COOKIE_APP_TOKEN', { path: '/' }); // que apague o token
+        expect(destroyCookie).toHaveBeenCalledWith(
+          null,
+          'LOGIN_COOKIE_APP_TOKEN',
+          { path: '/' },
+        ); // que apague o token
       });
     });
   });
