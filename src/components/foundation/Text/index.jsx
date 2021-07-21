@@ -91,6 +91,14 @@ const profileHeader = css`
   })}
 `;
 
+const paragraph1Bold = css`
+  ${({ theme }) => css`
+    font-size: ${theme.typographyVariants.paragraph1Bold.fontSize};
+    font-weight: ${theme.typographyVariants.paragraph1Bold.fontWeight};
+    line-height: ${theme.typographyVariants.paragraph1Bold.lineHeight};
+  `}
+`;
+
 export const TextStyleVariants = {
   smallestException,
   paragraph1,
@@ -98,6 +106,7 @@ export const TextStyleVariants = {
   paragraphStats,
   paragraph,
   profileHeader,
+  paragraph1Bold,
 };
 
 const TextBase = styled.span`
@@ -105,7 +114,9 @@ const TextBase = styled.span`
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
 
   ${propToStyle('textAlign')}
+  ${propToStyle('marginTop')}
   ${propToStyle('marginBottom')}
+  ${propToStyle('marginRight')}
 `;
 
 export default function Text({

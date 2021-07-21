@@ -1,6 +1,6 @@
 import ProfileScreen from '../../../components/screens/ProfileScreen';
 import websitePageHOC from '../../../components/wrappers/WebsitePage/hoc';
-import authService from '../../../services/auth/authService';
+import authService from '../../../services/auth';
 
 export async function getServerSideProps(ctx) {
   const auth = authService(ctx);

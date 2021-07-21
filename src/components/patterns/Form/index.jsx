@@ -1,6 +1,6 @@
-import { Lottie } from '@crello/react-lottie';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import Lottie from 'react-lottie-player';
 import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
 import Box from '../../foundation/layout/Box';
@@ -33,49 +33,49 @@ function FormContent() {
     });
   };
 
-  const isFormInvalid = userInfo.nome.length === 0 || userInfo.usuario.length === 0;
+  const isFormInvalid =
+    userInfo.nome.length === 0 || userInfo.usuario.length === 0;
 
   return (
-    <form onSubmit={(event) => {
-      event.preventDefault();
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
 
-      setSubmissionStatus(formStates.DEFAULT);
-      setIsFormSubmited(true);
+        setSubmissionStatus(formStates.DEFAULT);
+        setIsFormSubmited(true);
 
-      const userDto = {
-        name: userInfo.nome,
-        username: userInfo.usuario,
-      };
+        const userDto = {
+          name: userInfo.nome,
+          username: userInfo.usuario,
+        };
 
-      fetch('https://instalura-api.vercel.app/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userDto),
-      }).then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
+        fetch('https://instalura-api.vercel.app/api/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userDto),
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
 
-        throw new Error('Não foi possível cadastrar o usuário agora :(');
-      }).then((usuario) => {
-        setSubmissionStatus(formStates.DONE);
-        // eslint-disable-next-line no-console
-        console.log(usuario);
-      }).catch((error) => {
-        setSubmissionStatus(formStates.ERROR);
-        // eslint-disable-next-line no-console
-        console.error(error);
-      });
-    }}
+            throw new Error('Não foi possível cadastrar o usuário agora :(');
+          })
+          .then((usuario) => {
+            setSubmissionStatus(formStates.DONE);
+            // eslint-disable-next-line no-console
+            console.log(usuario);
+          })
+          .catch((error) => {
+            setSubmissionStatus(formStates.ERROR);
+            // eslint-disable-next-line no-console
+            console.error(error);
+          });
+      }}
     >
-
-      <Text
-        variant="title"
-        tag="h1"
-        color="tertiary.main"
-      >
+      <Text variant="title" tag="h1" color="tertiary.main">
         Pronto para saber da vida dos outros?
       </Text>
       <Text
@@ -84,47 +84,35 @@ function FormContent() {
         color="tertiary.light"
         marginBottom="32px"
       >
-        Você está a um passo de saber tudo o que está
-        rolando no bairro, complete seu cadastro agora!
+        Você está a um passo de saber tudo o que está rolando no bairro,
+        complete seu cadastro agora!
       </Text>
 
       {isFormSubmited && submissionStatus === formStates.DONE && (
-        <Box
-          display="flex"
-          justifyContent="center"
-        >
+        <Box display="flex" justifyContent="center">
           {/* https://lottiefiles.com/43920-success-alert-icon */}
           <Lottie
-            width="100px"
-            height="100px"
-            config={{ animationData: successAnimation, loop: false, autoplay: true }}
+            animationData={successAnimation}
+            loop={false}
+            play
+            style={{ width: 100, height: 100 }}
           />
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-          >
+          <Box display="flex" flexDirection="column" justifyContent="center">
             <p>Cadastro realizado com sucesso!</p>
           </Box>
         </Box>
       )}
 
       {isFormSubmited && submissionStatus === formStates.ERROR && (
-        <Box
-          display="flex"
-          justifyContent="center"
-        >
+        <Box display="flex" justifyContent="center">
           {/* https://lottiefiles.com/13865-sign-for-error-flat-style */}
           <Lottie
-            width="100px"
-            height="100px"
-            config={{ animationData: errorAnimation, loop: false, autoplay: true }}
+            animationData={errorAnimation}
+            loop={false}
+            play
+            style={{ width: 100, height: 100 }}
           />
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-          >
+          <Box display="flex" flexDirection="column" justifyContent="center">
             <p>Erro ao submeter os dados. Por favor, tente mais tarde! :(</p>
           </Box>
         </Box>
@@ -136,7 +124,7 @@ function FormContent() {
           name="nome"
           value={userInfo.nome}
           onChange={handleChange} // capturadores, pegadores de ação
-          marginBottom='17px'
+          marginBottom="17px"
         />
       </div>
 
@@ -146,27 +134,26 @@ function FormContent() {
           name="usuario"
           value={userInfo.usuario}
           onChange={handleChange}
-          marginBottom='17px'
+          marginBottom="17px"
         />
       </div>
 
-      <Button type="submit" disabled={isFormInvalid} variant="primary.main" fullWidth 
-      padding={{md: '12px 43px'}}>
+      <Button
+        type="submit"
+        disabled={isFormInvalid}
+        variant="primary.main"
+        fullWidth
+        padding={{ md: '12px 43px' }}
+      >
         Cadastrar
       </Button>
-
     </form>
   );
 }
 
 export default function FormCadastro({ modalProps }) {
   return (
-    <Grid.Row
-      marginLeft={0}
-      marginRight={0}
-      flex={1}
-      justifyContent="flex-end"
-    >
+    <Grid.Row marginLeft={0} marginRight={0} flex={1} justifyContent="flex-end">
       <Grid.Col
         display="flex"
         paddingRight={{ md: '0' }}
@@ -189,7 +176,6 @@ export default function FormCadastro({ modalProps }) {
         >
           <FormContent />
         </Box>
-
       </Grid.Col>
     </Grid.Row>
   );

@@ -2,35 +2,23 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import React from 'react';
+import abbreviateNumber from '../../../../theme/utils/abbreviateNumber';
 import Box from '../../../foundation/layout/Box';
 import Text from '../../../foundation/Text';
-import HeaderWrapper from './styles';
+import HeaderWrapper, { UserCircleIcon } from './styles';
 
 export default function Header({ user, photo }) {
-  const abbreviateNumber = (num, numFixed) => {
-    if (num === null) {
-      return null;
-    }
-    if (num === 0) {
-      return '0';
-    }
-    const fixed = !numFixed || numFixed < 0 ? 0 : numFixed;
-    const b = num.toPrecision(2).split('e');
-    const k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3);
-    const c =
-      k < 1 ? num.toFixed(0 + fixed) : num / (10 ** (k * 3)).toFixed(1 + fixed);
-    const d = c < 0 ? c : Math.abs(c);
-    return d + ['', 'k', 'm', 'b', 't'][k];
-  };
-
   return (
     <HeaderWrapper>
-      <Image
-        src={photo.photoUrl}
-        alt={photo.description}
-        width="200px"
-        height="200px"
-      />
+      {photo && (
+        <Image
+          src={photo.photoUrl}
+          alt={photo.description}
+          width="200px"
+          height="200px"
+        />
+      )}
+      {!photo && <UserCircleIcon />}
 
       <Box
         display="flex"
@@ -91,7 +79,7 @@ export default function Header({ user, photo }) {
             color="tertiary.main"
             marginBottom="4px"
           >
-            {user.name}
+            {user.name && user.username}
           </Text>
           <Text variant="paragraph" color="tertiary.light">
             A wholesome person responsible for the best movies ever.

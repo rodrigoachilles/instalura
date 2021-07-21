@@ -1,4 +1,4 @@
-import loginService from './loginService';
+import loginService from './';
 
 const token = 'fake-token';
 const user = {
@@ -37,7 +37,7 @@ describe('loginService', () => {
             HttpClientModule,
           );
 
-          expect(setCookieModule).toBeCalledTimes(2);
+          expect(setCookieModule).toBeCalledTimes(1);
           expect(setCookieModule).toHaveBeenCalledWith(
             null,
             'LOGIN_COOKIE_APP_TOKEN',
@@ -49,17 +49,7 @@ describe('loginService', () => {
               secure: true,
             },
           );
-          expect(setCookieModule).toHaveBeenCalledWith(
-            null,
-            'USER_NAME',
-            user.name,
-            {
-              path: '/',
-              maxAge: 604800,
-              sameSite: 'none',
-              secure: true,
-            },
-          );
+
           expect(loginServiceResponse).toEqual({ token });
         });
       });

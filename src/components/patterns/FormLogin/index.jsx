@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as yup from 'yup';
 import useForm from '../../../infra/hooks/forms/useForm';
-import loginService from '../../../services/login/loginService';
+import loginService from '../../../services/login';
 import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
 
@@ -29,10 +29,11 @@ export default function LoginForm({ onSubmit }) {
     initialValues,
     onSubmit: (values) => {
       form.setIsFormDisabled(true);
-      loginService.login({
-        username: values.usuario, // 'omariosouto'
-        password: values.senha, // 'senhasegura'
-      })
+      loginService
+        .login({
+          username: values.usuario, // 'omariosouto'
+          password: values.senha, // 'senhasegura'
+        })
         .then(() => {
           router.push('/app/feed');
         })
@@ -61,7 +62,7 @@ export default function LoginForm({ onSubmit }) {
         isTouched={form.touched.usuario}
         onChange={form.handleChange}
         onBlur={form.handleBlur}
-        marginBottom='17px'
+        marginBottom="17px"
       />
       <TextField
         placeholder="Senha"
@@ -72,7 +73,7 @@ export default function LoginForm({ onSubmit }) {
         isTouched={form.touched.senha}
         onChange={form.handleChange}
         onBlur={form.handleBlur}
-        marginBottom='17px'
+        marginBottom="17px"
       />
 
       <Button
@@ -82,7 +83,7 @@ export default function LoginForm({ onSubmit }) {
           xs: '0 auto',
           md: 'initial',
         }}
-        padding={{md: '12px 43px'}}
+        padding={{ md: '12px 43px' }}
         fullWidth
         disabled={form.isFormDisabled}
       >

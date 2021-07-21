@@ -1,9 +1,11 @@
 import { BASE_URL } from '../../infra/env';
 import HttpClient from '../../infra/http';
-import authService from '../auth/authService';
+import authService from '../auth';
+
+const users = undefined;
 
 const userService = {
-  async getProfilePage(ctx) {
+  async getPosts(ctx) {
     const url = `${BASE_URL}/api/users/posts`;
     try {
       const token = await authService(ctx).getToken();
@@ -23,6 +25,16 @@ const userService = {
       };
     } catch (err) {
       throw new Error('Não conseguimos pegar os posts');
+    }
+  },
+  async getUsers() {
+    const url = `${BASE_URL}/api/users`;
+    try {
+      return HttpClient(url, {
+        method: 'GET',
+      });
+    } catch (err) {
+      throw new Error('Não conseguimos recuperar o usuário pedido');
     }
   },
 };
