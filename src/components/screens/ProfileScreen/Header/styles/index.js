@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { UserCircle } from 'styled-icons/heroicons-solid';
 import breakpointsMedia from '../../../../../theme/utils/breakpointsMedia';
 
 const margin = {
@@ -49,13 +50,13 @@ const HeaderWrapper = styled.div`
     float: none;
 
     ${breakpointsMedia({
-    xs: css`
+      xs: css`
         width: 88px;
       `,
-    md: css`
+      md: css`
         width: 188px;
       `,
-  })}
+    })}
   }
 
   img :hover {
@@ -81,6 +82,19 @@ HeaderWrapper.Name = styled.div`
     md: css`
       position: inherit;
       margin-right: 10%;
+    `,
+  })}
+`;
+
+export const UserCircleIcon = styled(UserCircle)`
+  ${breakpointsMedia({
+    xs: css`
+      width: 88px;
+      height: 88px;
+    `,
+    md: css`
+      width: 188px;
+      height: 188px;
     `,
   })}
 `;

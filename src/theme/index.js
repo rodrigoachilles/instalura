@@ -13,6 +13,9 @@ export const colors = {
     main: {
       color: '#F1F1F1',
     },
+    light: {
+      color: '#F1F1F1',
+    },
   },
   primary: {
     main: {
@@ -76,5 +79,5 @@ export default {
   breakpoints,
   borderRadius: '12px',
   transition: '200ms ease-in-out',
-  fontFamily: '\'Rubik\', sans-serif',
+  fontFamily: "'Rubik', sans-serif",
 };

@@ -19,6 +19,7 @@ module.exports = {
       'images.all-free-download.com',
       'ichef.bbci.co.uk',
       'cdn.leroymerlin.com.br',
+      'assets.pokemon.com',
     ],
   },
   async redirects() {

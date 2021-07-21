@@ -53,8 +53,10 @@ describe('HttpClient()', () => {
 
     describe('and fails', () => {
       it('throws an error', async () => {
+        const message = 'Falha em pegar os dados do servidor :(';
+
         fetchModule.mockImplementationOnce(() =>
-          Promise.reject('Falha em pegar os dados do servidor :('),
+          Promise.reject(message),
         );
 
         expect.assertions(2);
@@ -62,9 +64,7 @@ describe('HttpClient()', () => {
         try {
           await HttpClient('some-url/api', { body: {} }, fetchModule);
         } catch (error) {
-          expect(error).toMatch(
-            'Falha em pegar os dados do servidor :(',
-          );
+          expect(error).toEqual(new Error(message));
         }
 
         expect(fetchModule).toHaveBeenCalledTimes(1);
