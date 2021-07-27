@@ -3,7 +3,6 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 import propToStyle from '../../../theme/utils/propToStyle';
 import { TextStyleVariants } from '../../foundation/Text';
 import Link from '../Link';
@@ -14,34 +13,29 @@ const ButtonGhost = css`
 `;
 
 const ButtonDefault = css`
-  color: ${({ theme, variant }) => get(theme, `colors.${variant}.contrastText`)};
-  background-color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
+  color: ${({ theme, variant }) =>
+    get(theme, `colors.${variant}.contrastText`)};
+  background-color: ${({ theme, variant }) =>
+    get(theme, `colors.${variant}.color`)};
 `;
 
 const ButtonWrapper = styled.button`
   border: 0;
   cursor: pointer;
   padding: 12px 26px;
-  font-weight: bold;
   opacity: 1;
   border-radius: 8px;
-
-  ${breakpointsMedia({
-    xs: css`
-      ${TextStyleVariants.smallestException}
-    `,
-    md: css`
-      ${TextStyleVariants.paragraph1}
-    `,
-  })}
+  ${TextStyleVariants.paragraph1Bold}
 
   &:disabled {
     cursor: not-allowed;
-    opacity: .2;
+    opacity: 0.2;
   }
-  ${({ fullWidth }) => fullWidth && css`
-    width: 100%;
-  `};
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `};
 
   ${propToStyle('margin')}
   ${propToStyle('padding')}
@@ -53,7 +47,7 @@ const ButtonWrapper = styled.button`
   ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
   &:hover,
   &:focus {
-    opacity: .5;
+    opacity: 0.5;
   }
 `;
 
@@ -62,11 +56,7 @@ export default function Button({ href, children, ...props }) {
   const tag = hasHref ? Link : 'button';
 
   return (
-    <ButtonWrapper
-      as={tag}
-      href={href}
-      {...props}
-    >
+    <ButtonWrapper as={tag} href={href} {...props}>
       {children}
     </ButtonWrapper>
   );

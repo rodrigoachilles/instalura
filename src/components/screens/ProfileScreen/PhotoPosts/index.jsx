@@ -41,6 +41,7 @@ export default function PhotoPosts({ posts }) {
               flex="1 0 25%"
               margin={{ xs: '4px', md: '10px' }}
               key={post._id}
+              className={`filter-${post.filter}`}
             >
               <Image
                 alt={post.description}
