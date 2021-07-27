@@ -2,6 +2,7 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../../public/styles/instagram.min.css';
 
 export default function App({ Component, pageProps }) {
   return (

@@ -62,12 +62,14 @@ export default function Posts() {
                     <ThreeDotsIcon />
                   </Box>
                 </PostsWrapper.Header>
-                <Image
-                  alt={post.description}
-                  src={post.photoUrl}
-                  width="500px"
-                  height="500px"
-                />
+                <Box className={`filter-${post.filter}`}>
+                  <Image
+                    alt={post.description}
+                    src={post.photoUrl}
+                    width="500px"
+                    height="500px"
+                  />
+                </Box>
                 <PostsWrapper.Stats>
                   <Box
                     display="flex"

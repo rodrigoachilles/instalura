@@ -4,7 +4,8 @@ module.exports = {
   reactStrictMode: true,
   trailingSlash: true,
   images: {
-    deviceSizes: [320, 640, 768, 1024, 1600],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [320, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     domains: [
       'github.com',
       'unavatar.now.sh',
@@ -20,6 +21,8 @@ module.exports = {
       'ichef.bbci.co.uk',
       'cdn.leroymerlin.com.br',
       'assets.pokemon.com',
+      'www.gsselectcar.com.br',
+      'pluralsight.imgix.net',
     ],
   },
   async redirects() {

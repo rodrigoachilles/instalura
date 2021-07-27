@@ -16,9 +16,16 @@ export const colors = {
     light: {
       color: '#F1F1F1',
     },
+    dark: {
+      color: '#181F22',
+    },
   },
   primary: {
     main: {
+      color: '#D7385E',
+      contrastText: '#fff',
+    },
+    light: {
       color: '#D7385E',
       contrastText: '#fff',
     },

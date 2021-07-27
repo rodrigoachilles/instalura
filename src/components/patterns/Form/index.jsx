@@ -8,6 +8,7 @@ import Grid from '../../foundation/layout/Grid';
 import Text from '../../foundation/Text';
 import errorAnimation from './animations/error.json';
 import successAnimation from './animations/success.json';
+import { CloseIcon } from './styles';
 
 const formStates = {
   DEFAULT: 'DEFAULT',
@@ -152,6 +153,8 @@ function FormContent() {
 }
 
 export default function FormCadastro({ modalProps }) {
+  const { onClose } = modalProps;
+
   return (
     <Grid.Row marginLeft={0} marginRight={0} flex={1} justifyContent="flex-end">
       <Grid.Col
@@ -174,6 +177,9 @@ export default function FormCadastro({ modalProps }) {
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...modalProps}
         >
+          <Box display="flex" justifyContent="flex-end" padding="22px">
+            <CloseIcon onClick={onClose} />
+          </Box>
           <FormContent />
         </Box>
       </Grid.Col>

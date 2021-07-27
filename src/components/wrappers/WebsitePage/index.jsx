@@ -37,20 +37,21 @@ export default function WebsitePageWrapper({
         getCMSContent: (cmsKey) => get(messages, cmsKey),
       }}
     >
-      <SEO
-        {...seoProps}
-      />
+      <SEO {...seoProps} />
 
-      <Box
-        display="flex"
-        flex="1"
-        flexDirection="column"
-        {...pageBoxProps}
-      >
+      <Box display="flex" flex="1" flexDirection="column" {...pageBoxProps}>
         <Modal
           isOpen={isModalCadastroOpen}
           onClose={() => {
             setModalCadastroState(false);
+          }}
+          animationVariants={{
+            open: {
+              x: 0,
+            },
+            closed: {
+              x: '100%',
+            },
           }}
         >
           {(modalCadastroProps) => (
@@ -62,15 +63,21 @@ export default function WebsitePageWrapper({
           onClose={() => {
             setModalUploadImageState(false);
           }}
+          animationVariants={{
+            open: {
+              scale: 1,
+            },
+            closed: {
+              scale: 0,
+            },
+          }}
         >
           {(modalUploadImageProps) => (
             <FormUploadImage modalProps={modalUploadImageProps} />
           )}
         </Modal>
         {menuProps.variant === 'simple' && (
-          <Menu
-            onCadastrarClick={() => setModalCadastroState(true)}
-          />
+          <Menu onCadastrarClick={() => setModalCadastroState(true)} />
         )}
         {menuProps.variant === 'logged' && (
           <MenuLogged
@@ -78,9 +85,7 @@ export default function WebsitePageWrapper({
           />
         )}
         {children}
-        {footerProps.display && (
-          <Footer />
-        )}
+        {footerProps.display && <Footer />}
       </Box>
     </WebsitePageContext.Provider>
   );

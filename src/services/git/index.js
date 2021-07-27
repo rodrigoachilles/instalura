@@ -11,7 +11,7 @@ const gitService = {
         method: 'GET',
       });
     } catch (err) {
-      console.log(`err`, err);
+      console.error(`err`, err);
       throw new Error(
         'Não foi possível acessar o GitHub para obter as informações.',
       );
@@ -25,7 +25,7 @@ const gitService = {
         method: 'GET',
       });
     } catch (err) {
-      console.log(`err`, err);
+      console.error(`err`, err);
       throw new Error(
         'Não foi possível acessar o GitHub para obter as informações.',
       );
@@ -37,7 +37,7 @@ const gitService = {
         method: 'GET',
       });
     } catch (err) {
-      console.log(`err`, err);
+      console.error(`err`, err);
       throw new Error(
         'Não foi possível acessar o GitHub para obter as informações.',
       );
@@ -49,7 +49,7 @@ const gitService = {
         method: 'GET',
       });
     } catch (err) {
-      console.log(`err`, err);
+      console.error(`err`, err);
       throw new Error(
         'Não foi possível acessar o GitHub para obter as informações.',
       );
