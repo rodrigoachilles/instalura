@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import gitService from '../../../../../services/git';
 
 function useGithub() {
+  const git = gitService(ctx);
+
   const [response, setResponse] = useState({
     data: null,
     loading: true,
@@ -10,19 +12,19 @@ function useGithub() {
 
   const fetchData = async () => {
     try {
-      const userInfo = await gitService.getInfo();
+      const userInfo = await git.getInfo();
 
-      const usersFollowing = await gitService.getUsersFollowing();
+      const usersFollowing = await git.getUsersFollowing();
       let followings = [];
       if (usersFollowing) {
         for (const userFollowing of usersFollowing) {
           followings.push(
-            await gitService.getUserInfo({
+            await git.getUserInfo({
               user: userFollowing.login,
             }),
           );
 
-          // following.repositories = await gitService.getUserRepositories({
+          // following.repositories = await git.getUserRepositories({
           // user: following.login,
           // });
         }

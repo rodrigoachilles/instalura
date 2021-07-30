@@ -1,16 +1,22 @@
 /* eslint-disable no-underscore-dangle */
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import Lottie from 'react-lottie-player';
+import postService from '../../../../services/post';
 import abbreviateNumber from '../../../../theme/utils/abbreviateNumber';
 import Button from '../../../commons/Button';
 import Loading from '../../../commons/Loading';
 import Box from '../../../foundation/layout/Box';
 import Text from '../../../foundation/Text';
+// import heartsAnimation from './animations/hearts.json';
 import usePosts from './hook/usePosts';
 import PostsWrapper, {
   BookmarkIcon,
+  DislikeIcon,
+  Figure,
   HeartDislikeIcon,
   HeartIcon,
+  LikeIcon,
   MessageRoundedIcon,
   PaperPlaneIcon,
   SuitHeartFillIcon,
@@ -18,20 +24,68 @@ import PostsWrapper, {
   UserCircleIcon,
 } from './styles';
 
-export default function Posts() {
-  const dados = usePosts();
+export default function Posts({ user, users }) {
+  const dados = usePosts({ users });
+  const post = postService(null);
+  const [posts, setPosts] = useState();
+  // const [playHearts, setPlayHearts] = useState(false);
+
+  useEffect(() => {
+    if (dados.data) {
+      setPosts(dados.data.posts);
+    }
+  }, [dados.data]);
+
+  const handleLike = async (event) => {
+    event.preventDefault();
+
+    const postId = event.currentTarget.getAttribute('id');
+    const responseLike = await post.like({ postId });
+
+    if (responseLike) {
+      // setPlayHearts(true);
+
+      const findUser = (userId) =>
+        users.filter((user) => user._id === userId)[0];
+      for (const like of responseLike.likes) {
+        like.user = findUser(like.user);
+      }
+
+      setPosts(
+        posts.map((post) => {
+          if (post._id === postId) {
+            post.likes = responseLike.likes;
+          }
+          return post;
+        }),
+      );
+    } else {
+      setPosts(
+        posts.map((post) => {
+          if (post._id === postId) {
+            post.likes = post.likes.filter((like) => like.user._id !== user.id);
+          }
+          return post;
+        }),
+      );
+    }
+  };
+
+  const findLike = (likes) => {
+    return likes.filter((like) => like.user._id === user.id).length === 0;
+  };
 
   return (
     <>
       {dados.loading && <Loading />}
-      {!dados.loading && dados.data && (
+      {!dados.loading && posts && (
         <Box
           display="flex"
           flexDirection="column"
           flexWrap="wrap"
           justifyContent="center"
         >
-          {dados.data.posts && dados.data.posts.length === 0 && (
+          {posts && posts.length === 0 && (
             <Box
               display="flex"
               flexDirection="column"
@@ -43,9 +97,9 @@ export default function Posts() {
               </Text>
             </Box>
           )}
-          {dados.data.posts &&
-            dados.data.posts.length !== 0 &&
-            dados.data.posts.reverse().map((post) => (
+          {posts &&
+            posts.length !== 0 &&
+            posts.map((post) => (
               <PostsWrapper key={post._id}>
                 <PostsWrapper.Header>
                   <Box
@@ -62,14 +116,32 @@ export default function Posts() {
                     <ThreeDotsIcon />
                   </Box>
                 </PostsWrapper.Header>
-                <Box className={`filter-${post.filter}`}>
-                  <Image
-                    alt={post.description}
-                    src={post.photoUrl}
-                    width="500px"
-                    height="500px"
-                  />
-                </Box>
+                <PostsWrapper.Like onClick={handleLike} id={post._id}>
+                  {findLike(post.likes) && <LikeIcon />}
+                  {!findLike(post.likes) && <DislikeIcon />}
+                  {/* https://lottiefiles.com/53203-hearts */}
+                  {/* <Lottie
+                    animationData={heartsAnimation}
+                    loop={false}
+                    play={playHearts}
+                    style={{
+                      width: 500,
+                      height: 500,
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      zIndex: 2,
+                    }}
+                  /> */}
+                  <Figure className={`filter-${post.filter}`}>
+                    <Image
+                      alt={post.description}
+                      src={post.photoUrl}
+                      width="500px"
+                      height="500px"
+                    />
+                  </Figure>
+                </PostsWrapper.Like>
                 <PostsWrapper.Stats>
                   <Box
                     display="flex"
@@ -107,7 +179,7 @@ export default function Posts() {
                     {post.likes.length !== 0 &&
                       post.likes.slice(0, 3).map((like, index) => (
                         // <Box key={like.id}>{like.user.username}</Box>
-                        <SuitHeartFillIcon key={like.id} index={index} />
+                        <SuitHeartFillIcon key={like._id} index={index} />
                       ))}
                     {post.likes.length === 0 && <HeartDislikeIcon />}
                   </Box>

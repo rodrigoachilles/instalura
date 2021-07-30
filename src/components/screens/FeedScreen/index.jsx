@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
+import PropTypes from 'prop-types';
 import React from 'react';
 import Box from '../../foundation/layout/Box';
-import Github from './Github';
+// import Github from './Github';
 import Posts from './Posts';
 
 const margin = {
@@ -12,7 +13,7 @@ const margin = {
   xl: '150px',
 };
 
-export default function FeedScreen() {
+export default function FeedScreen({ user, users }) {
   return (
     <Box
       display="flex"
@@ -24,8 +25,17 @@ export default function FeedScreen() {
       marginBottom={{ xs: '100px', md: '0px' }}
       justifyContent="space-between"
     >
-      <Posts />
-      <Github />
+      <Posts user={user} users={users} />
+      {/* <Github /> */}
     </Box>
   );
 }
+
+FeedScreen.propTypes = {
+  users: PropTypes.any.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    username: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+};
