@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import userService from '../../../../../services/user';
 
-function usePosts() {
+function usePosts({ users }) {
+  const user = userService(null);
   const [response, setResponse] = useState({
     data: null,
     loading: true,
@@ -10,17 +11,19 @@ function usePosts() {
 
   const fetchData = async () => {
     try {
-      const response = await userService.getPosts();
-      const users = (await userService.getUsers()).data;
+      const response = await user.getPosts();
       const findUser = (userId) =>
         users.filter((user) => user._id === userId)[0];
 
+      response.posts = response.posts.reverse();
       for (const post of response.posts) {
         post.user = findUser(post.user);
         for (const like of post.likes) {
           like.user = findUser(like.user);
         }
       }
+
+      // setPosts(response.posts.reverse());
 
       setResponse((currentState) => ({
         ...currentState,

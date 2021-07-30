@@ -19,11 +19,15 @@ export default async function HttpClient(
     }
 
     if (response.ok) {
+      if (response.status === 204) {
+        return undefined;
+      }
       return response.json();
     }
 
     throw new Error(response.statusText);
   } catch (err) {
+    console.error(err);
     throw new Error('Falha em pegar os dados do servidor :(');
   }
 }

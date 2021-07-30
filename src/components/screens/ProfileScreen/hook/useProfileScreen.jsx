@@ -9,8 +9,11 @@ function useProfileScreen() {
   });
 
   const fetchData = async () => {
+    const user = userService(null);
+
     try {
-      const responseFromServer = await userService.getPosts();
+      const responseFromServer = await user.getPosts();
+
       setResponse((currentState) => ({
         ...currentState,
         data: responseFromServer,

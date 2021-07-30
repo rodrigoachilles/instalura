@@ -5,7 +5,7 @@ import Lottie from 'react-lottie-player';
 import Button from '../../../components/commons/Button';
 import Loading from '../../../components/commons/Loading';
 import photoService from '../../../services/photo';
-import userService from '../../../services/user';
+import postService from '../../../services/post';
 import theme from '../../../theme';
 import Box from '../../foundation/layout/Box';
 import Text from '../../foundation/Text';
@@ -76,7 +76,7 @@ export default function FormUploadImage({ modalProps }) {
 
     // setTimeout(async () => {
     try {
-      await userService.createPost({ ...photoInfo });
+      await postService.create({ ...photoInfo });
       setPhotoInfo(emptyPhoto);
       setSubmissionStatus(formStates.DONE);
     } catch (err) {

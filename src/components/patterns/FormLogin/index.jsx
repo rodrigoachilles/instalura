@@ -37,9 +37,9 @@ export default function LoginForm({ onSubmit }) {
         .then(() => {
           router.push('/app/feed');
         })
-        .catch(() => {
+        .catch((err) => {
           // TODO Desafio: Mostrar o erro na tela
-          // console.error(err);
+          console.error(err);
         })
         .finally(() => {
           form.setIsFormDisabled(false);
