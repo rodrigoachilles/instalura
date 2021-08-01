@@ -36,7 +36,7 @@ export default function PhotoPosts({ posts }) {
       )}
       {posts && posts.length !== 0 && (
         <Box display="flex" flexDirection="row" flexWrap="wrap">
-          {posts.reverse().map((post) => (
+          {posts.map((post) => (
             <Box
               flex="1 0 25%"
               margin={{ xs: '4px', md: '10px' }}
