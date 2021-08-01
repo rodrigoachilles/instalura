@@ -25,7 +25,7 @@ const setCookieModule = jest.fn();
 
 describe('loginService', () => {
   describe('login()', () => {
-    describe('when user try to login', () => {
+    describe('when user tries to login', () => {
       describe('and succeed', () => {
         test('store its token', async () => {
           const loginServiceResponse = await loginService.login(

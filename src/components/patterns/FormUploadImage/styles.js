@@ -15,21 +15,24 @@ const FormUploadImagemWrapper = styled.div`
   flex: 1;
   flex-direction: column;
   max-width: 375px;
-  max-height: 690px;
+  max-height: 600px;
 
   ${breakpointsMedia({
+    xs: css`
+      max-height: 690px;
+    `,
     sm: css`
       border-radius: 8px;
-      margin: 10% 20%;
+      margin: 15px 20%;
     `,
     md: css`
-      margin: 5% 25%;
+      margin: 15px 25%;
     `,
     lg: css`
-      margin: 5% 30%;
+      margin: 15px 30%;
     `,
     xl: css`
-      margin: 5% 35%;
+      margin: 15px 35%;
     `,
   })}
 `;

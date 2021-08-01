@@ -43,6 +43,7 @@ export default function MenuLogged({ onUploadImageClick }) {
           />
         </Form>
         <Button
+          name="addPost"
           ghost
           variant="secondary.light"
           onClick={onUploadImageClick}

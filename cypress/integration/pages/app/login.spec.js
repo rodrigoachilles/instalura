@@ -3,7 +3,7 @@
 
 import LoginScreenPageObject from '../../../../src/components/screens/app/LoginScreen/LoginScreen.pageObject';
 import { BASE_URL } from '../../../../src/infra/env';
-import { LOGIN_COOKIE_APP_TOKEN } from '../../../../src/services/login/loginService';
+import { LOGIN_COOKIE_APP_TOKEN } from '../../../../src/services/login';
 
 describe('/pages/app/login/', () => {
   describe('when fill and submit a form login request', () => {
@@ -14,7 +14,7 @@ describe('/pages/app/login/', () => {
       // Cenário
       const loginScreen = new LoginScreenPageObject(cy);
       loginScreen
-        .fillLoginForm({ user: 'omariosouto', password: 'senhasegura' })
+        .fillLoginForm({ user: 'cypresstest', password: 'senhasegura' })
         .submitLoginForm();
 
       // Asserções
@@ -24,6 +24,8 @@ describe('/pages/app/login/', () => {
           .should('exist')
           .should('have.property', 'value', token);
       });
+
+      cy.wait(5000);
 
       cy.url().should('include', '/app/feed');
     });

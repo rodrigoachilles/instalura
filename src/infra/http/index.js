@@ -27,7 +27,6 @@ export default async function HttpClient(
 
     throw new Error(response.statusText);
   } catch (err) {
-    console.error(err);
     throw new Error('Falha em pegar os dados do servidor :(');
   }
 }
