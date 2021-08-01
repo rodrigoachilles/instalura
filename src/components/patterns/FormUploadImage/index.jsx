@@ -31,6 +31,7 @@ const formStates = {
 };
 export default function FormUploadImage({ modalProps }) {
   const { onClose } = modalProps;
+  const post = postService(null);
   const emptyPhoto = {
     photoUrl: '',
     description: '',
@@ -44,7 +45,6 @@ export default function FormUploadImage({ modalProps }) {
   const [photoInfo, setPhotoInfo] = useState(emptyPhoto);
 
   const handleChange = async (event) => {
-    const fieldName = event.target.getAttribute('name');
     const fieldValue = event.target.value;
     try {
       const isValid = await photoService.validateUrl({ url: fieldValue });
@@ -76,10 +76,11 @@ export default function FormUploadImage({ modalProps }) {
 
     // setTimeout(async () => {
     try {
-      await postService.create({ ...photoInfo });
+      await post.create({ ...photoInfo });
       setPhotoInfo(emptyPhoto);
       setSubmissionStatus(formStates.DONE);
     } catch (err) {
+      console.error(err);
       setSubmissionStatus(formStates.ERROR);
     }
 
@@ -92,7 +93,7 @@ export default function FormUploadImage({ modalProps }) {
   const isFormInvalid = photoInfo.photoUrl.length === 0 || !isPhotoValid;
 
   return (
-    <FormUploadImagemWrapper {...modalProps}>
+    <FormUploadImagemWrapper id="formUploadImagem" {...modalProps}>
       <Box
         display="flex"
         flexDirection="row"
@@ -112,7 +113,7 @@ export default function FormUploadImage({ modalProps }) {
             justifyContent="center"
             alignItems="center"
             width="375px"
-            height="375px"
+            height={{ xs: '365px', sm: '300px' }}
             backgroundColor={theme.colors.tertiary.dark.color}
             marginBottom="48px"
           >
@@ -156,6 +157,7 @@ export default function FormUploadImage({ modalProps }) {
           >
             <Button
               type="button"
+              name="avancar"
               onClick={handleNext}
               variant="primary.light"
               fullWidth
@@ -168,7 +170,7 @@ export default function FormUploadImage({ modalProps }) {
       )}
 
       {submissionStatus === formStates.SELECT_FILTER && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} name="selectFilter">
           <Figure
             marginBottom="16px"
             maxWidth="375px"
@@ -183,7 +185,7 @@ export default function FormUploadImage({ modalProps }) {
               height="100%"
             />
           </Figure>
-          <Slider>
+          <Slider id="slider">
             <Slides>
               {filters.map((filter) => (
                 <Box
@@ -237,6 +239,7 @@ export default function FormUploadImage({ modalProps }) {
           >
             <Button
               type="submit"
+              name="postar"
               variant="primary.light"
               fullWidth
               disabled={isFormInvalid}
@@ -249,6 +252,7 @@ export default function FormUploadImage({ modalProps }) {
 
       {isFormSubmited && submissionStatus === formStates.DONE && (
         <Box
+          id="success"
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -277,6 +281,7 @@ export default function FormUploadImage({ modalProps }) {
 
       {isFormSubmited && submissionStatus === formStates.ERROR && (
         <Box
+          id="error"
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -297,7 +302,7 @@ export default function FormUploadImage({ modalProps }) {
             alignItems="center"
           >
             <Text variant="paragraph" color="error.main" role="alert">
-              Erro ao enviar a imagem.
+              Erro ao enviar a imagem!
             </Text>
             <Text variant="paragraph" color="error.main" role="alert">
               Por favor, tente mais tarde! :(

@@ -90,6 +90,10 @@ export default function Header({ user, photo }) {
   );
 }
 
+Header.defaultProps = {
+  photo: undefined,
+};
+
 Header.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.string,
@@ -102,5 +106,5 @@ Header.propTypes = {
   photo: PropTypes.shape({
     photoUrl: PropTypes.string,
     description: PropTypes.string,
-  }).isRequired,
+  }),
 };

@@ -86,12 +86,7 @@ export default function Posts({ user, users }) {
           justifyContent="center"
         >
           {posts && posts.length === 0 && (
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-            >
+            <Box display="flex" flexDirection="column" justifyContent="center">
               <Text variant="paragraph" color="error.main">
                 Nenhuma foto postada!
               </Text>
@@ -199,7 +194,7 @@ export default function Posts({ user, users }) {
           display="flex"
           flex="1"
           flexDirection="column"
-          alignItems="center"
+          flexWrap="wrap"
           justifyContent="center"
         >
           <Text variant="paragraph" color="error.main">
@@ -210,7 +205,6 @@ export default function Posts({ user, users }) {
           </Text>
         </Box>
       )}
-      {/* <pre>{JSON.stringify(dados.data, null, 4)}</pre> */}
     </>
   );
 }

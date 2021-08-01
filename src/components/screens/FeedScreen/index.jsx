@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Box from '../../foundation/layout/Box';
-// import Github from './Github';
+import Github from './Github';
 import Posts from './Posts';
 
 const margin = {
@@ -26,7 +26,7 @@ export default function FeedScreen({ user, users }) {
       justifyContent="space-between"
     >
       <Posts user={user} users={users} />
-      {/* <Github /> */}
+      <Github />
     </Box>
   );
 }

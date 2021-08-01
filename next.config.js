@@ -23,6 +23,8 @@ module.exports = {
       'assets.pokemon.com',
       'www.gsselectcar.com.br',
       'pluralsight.imgix.net',
+      'images.unsplash.com',
+      'citizengo.org',
     ],
   },
   async redirects() {

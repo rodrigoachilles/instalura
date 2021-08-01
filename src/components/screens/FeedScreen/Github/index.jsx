@@ -14,7 +14,12 @@ export default function Github() {
     <GithubWrapper>
       {dados.loading && <Loading />}
       {!dados.loading && dados.data && (
-        <Box display="flex" flexDirection="column" flexWrap="wrap">
+        <Box
+          display="flex"
+          flexDirection="column"
+          flexWrap="wrap"
+          justifyContent="center"
+        >
           {!dados.data.user && (
             <Box display="flex" flexDirection="column">
               <Text variant="paragraph" color="error.main">
@@ -50,7 +55,13 @@ export default function Github() {
         </Box>
       )}
       {!dados.loading && dados.error && (
-        <Box display="flex" flex="1" flexDirection="column">
+        <Box
+          display="flex"
+          flex="1"
+          flexDirection="column"
+          flexWrap="wrap"
+          justifyContent="center"
+        >
           <Text variant="paragraph" color="error.main">
             {dados.error}
           </Text>
