@@ -58,7 +58,7 @@
     "jest-canvas-mock": "^2.3.1",
     "jest-styled-components": "^7.0.5",
     "prettier": "^2.3.2",
-    "pretty-format": "^26.6.2",
+    "pretty-format": "^27.1.0",
     "shelljs": "^0.8.4",
     "start-server-and-test": "^1.13.1"
   },
