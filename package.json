@@ -59,7 +59,7 @@
     "jest-styled-components": "^7.0.5",
     "prettier": "^2.3.2",
     "pretty-format": "^26.6.2",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "start-server-and-test": "^1.13.1"
   },
   "license": "MIT",
