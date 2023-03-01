@@ -52,7 +52,7 @@
     "cypress": "^8.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
-    "eslint-config-next": "^11.0.1",
+    "eslint-config-next": "^13.2.2",
     "husky": "^7.0.1",
     "jest": "^26.6.3",
     "jest-canvas-mock": "^2.3.1",
